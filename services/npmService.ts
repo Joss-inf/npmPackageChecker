@@ -1,4 +1,29 @@
-import { NpmPackageData, NpmRegistryResponse, PackageDetailsResponse } from '../types';
+import { NpmPackageData, NpmRegistryResponse, PackageDetailsResponse, NpmDownloadsResponse } from '../types';
+
+/**
+ * Fetches download statistics for a package for the last week.
+ * @param packageName The name of the NPM package.
+ * @returns A promise that resolves to the number of downloads, or undefined if unavailable.
+ */
+export const fetchPackageDownloads = async (packageName: string): Promise<number | undefined> => {
+  try {
+    const response = await fetch(`https://api.npmjs.org/downloads/point/last-week/${packageName}`);
+    if (!response.ok) {
+      // It's common for download stats to return 404 for very new or obscure packages.
+      // We'll just return undefined in such cases, not throw an error.
+      if (response.status === 404) {
+        console.warn(`Download stats not found for package "${packageName}".`);
+        return undefined;
+      }
+      throw new Error(`Failed to fetch download data: ${response.statusText}`);
+    }
+    const data: NpmDownloadsResponse = await response.json();
+    return data.downloads;
+  } catch (error) {
+    console.error('Error in fetchPackageDownloads:', error);
+    return undefined; // Return undefined on any error
+  }
+};
 
 /**
  * Fetches package metadata from the NPM registry for a specific version or the latest.
@@ -87,6 +112,9 @@ export const fetchPackageData = async (packageName: string, version?: string): P
       return 0; // Versions are identical
     });
 
+    // Fetch download stats
+    const downloadsLastWeek = await fetchPackageDownloads(packageName);
+
     const packageData: NpmPackageData = {
       name: versionData.name,
       version: versionData.version,
@@ -100,6 +128,7 @@ export const fetchPackageData = async (packageName: string, version?: string): P
       npmUrl: `https://www.npmjs.com/package/${packageName}`,
       publishedDate: publishedDate, // Assign the found published date
       maintainers: data.maintainers, // Assign maintainers
+      downloadsLastWeek: downloadsLastWeek, // Assign download stats
     };
 
     return { packageData, allVersions };

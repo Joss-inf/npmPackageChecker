@@ -75,7 +75,12 @@ const PackageCard: React.FC<PackageCardProps> = ({ packageData, securityAdvisori
             <div><span className="font-semibold text-gray-800">License:</span> {packageData.license || 'N/A'}</div>
             {/* Display author from packageData */}
             <div><span className="font-semibold text-gray-800">Author:</span> {packageData.author || 'N/A'}</div> 
-            <div><span className="font-semibold text-gray-800">Downloads (Last Week):</span> N/A</div>
+            <div>
+              <span className="font-semibold text-gray-800">Downloads (Last Week):</span>{' '}
+              {packageData.downloadsLastWeek !== undefined
+                ? packageData.downloadsLastWeek.toLocaleString()
+                : 'N/A'}
+            </div>
             <div><span className="font-semibold text-gray-800">Published:</span> {packageData.publishedDate || 'N/A'}</div>
         </div>
       </div>

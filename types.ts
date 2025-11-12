@@ -1,8 +1,3 @@
-import { type Network } from 'vis-network';
-
-// The interfaces are defined in this file, so no need to import them from '../types'.
-// import { NpmPackageData, NpmRegistryResponse, PackageDetailsResponse } from '../types';
-
 export interface NpmPackageData {
   name: string;
   version: string;
@@ -16,6 +11,7 @@ export interface NpmPackageData {
   npmUrl: string;
   publishedDate?: string; // Added published date field
   maintainers?: Array<{ name: string; email: string }>; // Added maintainers field
+  downloadsLastWeek?: number; // Added downloadsLastWeek field
 }
 
 export interface NpmRegistryResponse {
@@ -50,6 +46,13 @@ export interface NpmRegistryResponse {
     type: string;
     url: string;
   };
+}
+
+export interface NpmDownloadsResponse {
+  downloads: number;
+  start: string;
+  end: string;
+  package: string;
 }
 
 export interface Dependency {
