@@ -1,0 +1,5 @@
+{
+  "name": "NPM Package Security Checker",
+  "description": "A frontend tool to inspect NPM packages for dependencies, licenses, and known vulnerabilities (where public APIs allow).",
+  "requestFramePermissions": []
+}
