@@ -1,20 +1,21 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# NPM Package Checker
 
-# Run and deploy your AI Studio app
+**NPM Package Checker** est une application web qui permet de vérifier rapidement les versions et vulnérabilités des packages NPM. L'outil fournit une interface simple pour rechercher un package, consulter sa dernière version et détecter les mises à jour nécessaires dans vos projets.
 
-This contains everything you need to run your app locally.
+## Fonctionnalités
+- Recherche et affichage des informations d’un package NPM.
+- Vérification des versions installées et disponibles.
+- Indication des dépendances obsolètes ou vulnérables.
+- Interface responsive et intuitive.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1CmzK5Y9Xoc6OeGekVXbdJxzRinVM8pSa
+## Technologies utilisées
+- React pour le frontend
+- Node.js pour le backend
+- Fetch API pour interroger le registre NPM
+- Tailwind CSS pour le design
 
-## Run Locally
+## Lien en ligne
+[https://npmpackagechecker.netlify.app/](https://npmpackagechecker.netlify.app/)
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Code source
+Actuellement privé / non publié
