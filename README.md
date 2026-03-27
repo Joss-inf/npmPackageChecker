@@ -18,4 +18,4 @@
 [https://npmpackagechecker.netlify.app/](https://npmpackagechecker.netlify.app/)
 
 ## Code source
-Actuellement privé / non publié
+(https://github.com/Joss-inf/npmPackageChecker)
